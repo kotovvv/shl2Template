@@ -94,16 +94,16 @@ $this->item->displayIntrotext = strlen($this->item->introtext) > 1000 ? truncate
 	<?php if ($params->get('show_readmore') != '0'  && $this->item->readmore) : ?>
 		<div><a class="btn_news" href="<?php echo Route::_(RouteHelper::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language)); ?>" itemprop="url">
 			<?php if ($params->get('access-view') == false) : ?>
-				<?php echo Text::_('MOD_ARTICLES_CATEGORY_REGISTER_TO_READ_MORE'); ?>
+				<?php echo Text::_('COM_CONTENT_REGISTER_TO_READ_MORE'); ?>
 			<?php elseif ($this->item->alternative_readmore) : ?>
 				<?php echo $this->item->alternative_readmore; ?>
 			<?php elseif ($params->get('show_readmore_title', 0)) : ?>
 				<?php echo HTMLHelper::_('string.truncate', $this->item->title, $params->get('readmore_limit')); ?>
 			<?php elseif ($params->get('show_readmore_title', 0)) : ?>
-				<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE'); ?>
+				<?php echo Text::_('COM_CONTENT_FEED_READMORE'); ?>
 				<?php echo HTMLHelper::_('string.truncate', $this->item->title, $params->get('readmore_limit')); ?>
 			<?php else : ?>
-				<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE'); ?>
+				<?php echo Text::sprintf('COM_CONTENT_READ_MORE_TITLE', $this->escape($this->item->title) ); ?>
 			<?php endif; ?>
 		</a></div>
 	<?php endif; ?>

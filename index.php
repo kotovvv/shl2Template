@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  Templates.shl2
@@ -45,6 +46,7 @@ JHtml::_('jquery.framework');
 
 //Register our web assets (Css/JS)
 $wa->useStyle('template.shl2.mainstyles');
+$wa->useStyle('template.bootstrap.style');
 $wa->useScript('template.shl2.scripts');
 
 //Set viewport
@@ -53,119 +55,128 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
+
 <head>
 
- <jdoc:include type="metas" />
- <?php $doc->addStyleSheet('/media/templates/site/'.$this->template.'/css/bootstrap.min.css'); ?>
- <jdoc:include type="styles" />
- <jdoc:include type="scripts" />
+  <jdoc:include type="metas" />
+  <jdoc:include type="styles" />
+  <jdoc:include type="scripts" />
 
 </head>
 <?php
 $menu2 = $app->getMenu();
 if ($menu2->getActive() == $menu2->getDefault()) {
   $tag = 'h1';
-}
-else {
+} else {
   $tag = 'h6';
 };
- ?>
+?>
+
 <body>
- <section class="header">
-  <span class="screen-darken"></span>
-  <div class="navbar">
-   <div class="container">
-    <div class="logo">
-     <a class="site_logo" href="/">
-      <<?php echo $tag ?> class="big_text_logo"><?php echo $this->params->get('Site_Title'); ?> <span class="smal_text_logo"><?php echo $this->params->get('Site_Town'); ?></span></<?php echo $tag ?>>
-      <img class="img_logo_site" src="<?php echo $this->params->get('site_logo_Image'); ?>" alt="logo">
-    </a>
-  </div>
-  <div class="nemu">
-   <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="offcanvas-header">
-     <button class="btn-close float-end"></button>
-   </div>
-   <?php if ($this->countModules('menu')) : ?>
-     <div class="collapse navbar-collapse"><jdoc:include type="modules" name="menu" style="none" /></div>
-   <?php endif; ?>
- </nav>
-</div>
-</div>
-</div>
-</section>
-<section class="breadcrumb">
-  <div class="container">
-   <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
-     <?php if ($this->countModules('breadcrumbs')) : ?>
-       <div class="breadcrumbs">
-         <jdoc:include type="modules" name="breadcrumbs" style="none" />
-       </div>
-     <?php endif; ?>
-   </nav>
- </div>
-</section>
+  <section class="header">
+    <span class="screen-darken"></span>
+    <div class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a class="site_logo" href="/">
+            <<?php echo $tag ?> class="big_text_logo"><?php echo $this->params->get('Site_Title'); ?> <span class="smal_text_logo"><?php echo $this->params->get('Site_Town'); ?></span></<?php echo $tag ?>>
+            <img class="img_logo_site" src="<?php echo $this->params->get('site_logo_Image'); ?>" alt="logo">
+          </a>
+        </div>
+        <div class="nemu">
+          <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
+
+                <?php if ($this->countModules('menu')) : ?>
+                  <div class="navbar-nav">
+                    <jdoc:include type="modules" name="menu" style="none" />
+                  </div>
+                <?php endif; ?>
+              </div>
+            </div>
+
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="breadcrumb">
+    <div class="container">
+      <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+        <?php if ($this->countModules('breadcrumbs')) : ?>
+          <div class="breadcrumbs">
+            <jdoc:include type="modules" name="breadcrumbs" style="none" />
+          </div>
+        <?php endif; ?>
+      </nav>
+    </div>
+  </section>
   <?php if ($this->countModules('content-top')) : ?>
-   <div class="content-top">
-     <jdoc:include type="modules" name="content-top" style="none" />
-   </div>
- <?php endif; ?>
-<section class="box_content">
-  <div class="container">
-   <div class="row">
-    <?php if ($this->countModules('sidebar-left')) : ?>
-      <div class="box_left">
-       <jdoc:include type="modules" name="sidebar-left" style="none" />
-     </div>
-   <?php endif; ?>
-   <div class="box_content_centre">
-    <main>
-          <?php if ($this->countModules('center-top')) : ?>
-      <div class="center-top">
-       <jdoc:include type="modules" name="center-top" style="none" />
-     </div>
-   <?php endif; ?>
-      <jdoc:include type="component" />
-                <?php if ($this->countModules('center-bottom')) : ?>
-      <div class="center-bottom">
-       <jdoc:include type="modules" name="center-bottom" style="none" />
-     </div>
-   <?php endif; ?>
-    </main>
-  </div>
-  <?php if ($this->countModules('sidebar-right')) : ?>
-   <div class="box_right">
-    <jdoc:include type="modules" name="sidebar-right" style="none" />
-  </div>
-<?php endif; ?>
-</div>
-
-<section class="news_botton">
- <?php if ($this->countModules('pre-footer')) : ?>
-   <div class="pre-footer">
-    <jdoc:include type="modules" name="pre-footer" style="none" />
-  </div>
-<?php endif; ?>
-</section>
-
-</div>
-</section>
-
-<section class="footer">
- <div class="menu_footer">
-  <div class="container">
-   <?php if ($this->countModules('menu-footer')) : ?>
-     <div class="menu-footer">
-      <jdoc:include type="modules" name="menu-footer" style="none" />
+    <div class="content-top">
+      <jdoc:include type="modules" name="content-top" style="none" />
     </div>
   <?php endif; ?>
-</div>
-</div>
-   <?php if ($this->countModules('footer')) : ?>
-      <jdoc:include type="modules" name="footer" style="none" />
-  <?php endif; ?>
-</section>
+  <section class="box_content">
+    <div class="container">
+      <div class="row">
+        <?php if ($this->countModules('sidebar-left')) : ?>
+          <div class="box_left">
+            <jdoc:include type="modules" name="sidebar-left" style="none" />
+          </div>
+        <?php endif; ?>
+        <div class="box_content_centre">
+          <main>
+            <?php if ($this->countModules('center-top')) : ?>
+              <div class="center-top">
+                <jdoc:include type="modules" name="center-top" style="none" />
+              </div>
+            <?php endif; ?>
+            <jdoc:include type="component" />
+            <?php if ($this->countModules('center-bottom')) : ?>
+              <div class="center-bottom">
+                <jdoc:include type="modules" name="center-bottom" style="none" />
+              </div>
+            <?php endif; ?>
+          </main>
+        </div>
+        <?php if ($this->countModules('sidebar-right')) : ?>
+          <div class="box_right">
+            <jdoc:include type="modules" name="sidebar-right" style="none" />
+          </div>
+        <?php endif; ?>
+      </div>
 
-<jdoc:include type="modules" name="debug" style="none" />
+      <section class="news_botton">
+        <?php if ($this->countModules('pre-footer')) : ?>
+          <div class="pre-footer">
+            <jdoc:include type="modules" name="pre-footer" style="none" />
+          </div>
+        <?php endif; ?>
+      </section>
+
+    </div>
+  </section>
+
+  <section class="footer">
+    <div class="menu_footer">
+      <div class="container">
+        <?php if ($this->countModules('menu-footer')) : ?>
+          <div class="menu-footer">
+            <jdoc:include type="modules" name="menu-footer" style="none" />
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
+    <?php if ($this->countModules('footer')) : ?>
+      <jdoc:include type="modules" name="footer" style="none" />
+    <?php endif; ?>
+  </section>
+
+  <jdoc:include type="modules" name="debug" style="none" />
 </body>
+
 </html>

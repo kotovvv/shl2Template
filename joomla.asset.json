@@ -2,10 +2,9 @@
   "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
   "name": "shl2",
   "version": "4.0.0",
-  "description": "This file contains details of the assets used by shl2, a modified version of the default cassiopeia template.",
+  "description": "This file contains details of the assets used by shl2",
   "license": "GPL-2.0-or-later",
   "assets": [
-
     {
       "name": "template.shl2.mainstyles",
       "description": "The default css style to use.",
@@ -28,15 +27,24 @@
       ]
     },
     {
-      "name": "template.active",
-      "description": "A dummy asset to allow extensions to use it as a dependency to the active template.",
-      "type": "script",
-      "uri": "",
+      "name": "template.user",
+      "description": "A file where a user can add their own css.",
+      "type": "style",
+      "uri": "user.css",
       "dependencies": [
-        "template.shl2"
+        "template.shl2.mainstyles"
       ]
     },
-        {
+    {
+      "name": "template.bootstrap.style",
+      "description": "bootstrap style",
+      "type": "style",
+      "uri": "bootstrap.min.css",
+      "dependencies": [
+        "template.shl2.mainstyles"
+      ]
+    },
+    {
       "name": "searchtools",
       "type": "style",
       "uri": "system/searchtools/searchtools.min.css"
@@ -44,7 +52,7 @@
     {
       "name": "fontawesome",
       "type": "style",
-      "uri": "system/joomla-fontawesome.min.css"
+      "uri": "media/system/css/joomla-fontawesome.min.css"
     }
   ]
 }
