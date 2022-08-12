@@ -57,7 +57,7 @@ echo '<p>'.$list[0]->displayIntrotext.'</p>';?>
 			<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE'); ?>
 			<?php echo HTMLHelper::_('string.truncate', $list[0]->title, $params->get('readmore_limit')); ?>
 		<?php else : ?>
-			<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE'); ?>
+			<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE'); ?>
 		<?php endif; ?>
 	</a></div>
 <?php endif; ?>

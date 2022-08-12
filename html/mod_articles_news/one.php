@@ -53,7 +53,7 @@ echo '<p>'.$item->displayIntrotext.'</p>';?>
 			<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE'); ?>
 			<?php echo HTMLHelper::_('string.truncate', $item->title, $item->params->get('readmore_limit')); ?>
 		<?php else : ?>
-			<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE'); ?>
+			<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE'); ?>
 		<?php endif; ?>
 	</a></div>
 <?php endif; ?>

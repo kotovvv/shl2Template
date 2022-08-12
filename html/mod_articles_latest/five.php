@@ -150,7 +150,7 @@ if(!function_exists("cleanIntrotext")) {
 									<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE'); ?>
 									<?php echo HTMLHelper::_('string.truncate', $item->title, $item->params->get('readmore_limit')); ?>
 								<?php else : ?>
-									<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE'); ?>
+									<?php echo Text::_('MOD_ARTICLES_CATEGORY_READ_MORE'); ?>
 								<?php endif; ?>
 								</span><img src="/media/templates/site/shl2/images/read_more_link.svg" alt="more <?= $item->title ?>">
 							</a>

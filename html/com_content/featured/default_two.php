@@ -80,7 +80,7 @@ echo '<p>'.$this->item->displayIntrotext.'</p>';?>
 			<?php echo Text::_('COM_CONTENT_FEED_READMORE'); ?>
 			<?php echo HTMLHelper::_('string.truncate', $this->item->title, $params->get('readmore_limit')); ?>
 		<?php else : ?>
-			<?php echo Text::sprintf('COM_CONTENT_READ_MORE_TITLE', $this->escape($this->item->title) ); ?>
+			<?php echo Text::_('COM_CONTENT_FEED_READMORE'); ?>
 		<?php endif; ?>
 	</a></div>
 <?php endif; ?>

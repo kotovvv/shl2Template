@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  com_content
@@ -35,7 +36,7 @@ $isNotPublishedYet = $this->item->publish_up > $currentDate;
 $isUnpublished     = $this->item->state == ContentComponent::CONDITION_UNPUBLISHED || $isNotPublishedYet || $isExpired;
 $images  = json_decode($this->item->images);
 $attribs  = json_decode($this->item->attribs);
-$no_image = $images->image_intro? '': ' not_img';
+$no_image = $images->image_intro ? '' : ' not_img';
 ?>
 
 <?php if ($canEdit) : ?>
@@ -47,57 +48,57 @@ $no_image = $images->image_intro? '': ' not_img';
 		<?php if ($params->get('show_title')) : ?>
 			<h3 class="item-title title" itemprop="headline">
 				<?php echo $this->escape($this->item->title); ?>
-		</h3>
-	<?php endif; ?>
+			</h3>
+		<?php endif; ?>
 
-	<?php	$show_introtext = $params->get('show_intro');
-	if ($show_introtext == '1')
-	{
-		$this->item->introtext = cleanIntrotext($this->item->introtext);
-	}
+		<?php $show_introtext = $params->get('show_intro');
+		if ($show_introtext == '1') {
+			$this->item->introtext = cleanIntrotext($this->item->introtext);
+		}
 
-	$this->item->displayIntrotext = strlen($this->item->introtext) > 1000 ? truncate($this->item->introtext, 1000) : $this->item->introtext;
+		$this->item->displayIntrotext = strlen($this->item->introtext) > 1000 ? truncate($this->item->introtext, 1000) : $this->item->introtext;
 
-echo '<p>'.$this->item->displayIntrotext.'</p>';?>
+		echo '<p>' . $this->item->displayIntrotext . '</p>'; ?>
 
 
 		<?php if ($params->get('show_readmore') != '0'  && $this->item->readmore) : ?>
-	<div><a class="btn_news" href="<?php echo Route::_(RouteHelper::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language)); ?>" itemprop="url">
-		<?php if ($params->get('access-view') == false) : ?>
-			<?php echo Text::_('COM_CONTENT_REGISTER_TO_READ_MORE'); ?>
-		<?php elseif ($this->item->alternative_readmore) : ?>
-			<?php echo $this->item->alternative_readmore; ?>
-		<?php elseif ($params->get('show_readmore_title', 0)) : ?>
-			<?php echo HTMLHelper::_('string.truncate', $this->item->title, $params->get('readmore_limit')); ?>
-		<?php elseif ($params->get('show_readmore_title', 0)) : ?>
-			<?php echo Text::_('COM_CONTENT_FEED_READMORE'); ?>
-			<?php echo HTMLHelper::_('string.truncate', $this->item->title, $params->get('readmore_limit')); ?>
-		<?php else : ?>
-			<?php echo Text::sprintf('COM_CONTENT_READ_MORE_TITLE', $this->escape($this->item->title) ); ?>
+			<div><a class="btn_news" href="<?php echo Route::_(RouteHelper::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language)); ?>" itemprop="url">
+					<?php if ($params->get('access-view') == false) : ?>
+						<?php echo Text::_('COM_CONTENT_REGISTER_TO_READ_MORE'); ?>
+					<?php elseif ($this->item->alternative_readmore) : ?>
+						<?php echo $this->item->alternative_readmore; ?>
+					<?php elseif ($params->get('show_readmore_title', 0)) : ?>
+						<?php echo HTMLHelper::_('string.truncate', $this->item->title, $params->get('readmore_limit')); ?>
+					<?php elseif ($params->get('show_readmore_title', 0)) : ?>
+						<?php echo Text::_('COM_CONTENT_FEED_READMORE'); ?>
+						<?php echo HTMLHelper::_('string.truncate', $this->item->title, $params->get('readmore_limit')); ?>
+					<?php else : ?>
+						<?php echo Text::_('COM_CONTENT_FEED_READMORE'); ?>
+					<?php endif; ?>
+				</a></div>
 		<?php endif; ?>
-	</a></div>
-<?php endif; ?>
-</div>
-	<?php $sh=0; if ($images->image_intro) : $sh=1;?>
-<div class="box_img_news">
-	<img src="<?= $images->image_intro ?>" alt="<?= $images->image_intro_alt ?>">
-</div>
-<?php endif;?>
-	<?php  if (($params->get('show_create_date') != '0' && $attribs->show_create_date != '0') || ($params->get('show_modified_date') != '0' && $attribs->show_modify_date != '0') || ($params->get('show_publish_date') != '0' && $attribs->show_publish_date != '0') || ($params->get('show_author') != '0' && $attribs->show_author != '0')) :?>
-<div class="box_info">
-	<?php if ($params->get('show_create_date') == '1') : ?>
-		<span>Erstellt: <?= date('d.m.Y',strtotime($this->item->created)) ?></span>
-	<?php endif;?>
-	<?php if ($params->get('show_modified_date') == '1') : ?>
-		<span>Aktualisiert: <?= date('d.m.Y',strtotime($this->item->modified)) ?></span>
-	<?php endif;?>
+	</div>
+	<?php $sh = 0;
+	if ($images->image_intro) : $sh = 1; ?>
+		<div class="box_img_news">
+			<img src="<?= $images->image_intro ?>" alt="<?= $images->image_intro_alt ?>">
+		</div>
+	<?php endif; ?>
+	<?php if (($params->get('show_create_date') != '0' && $attribs->show_create_date != '0') || ($params->get('show_modified_date') != '0' && $attribs->show_modify_date != '0') || ($params->get('show_publish_date') != '0' && $attribs->show_publish_date != '0') || ($params->get('show_author') != '0' && $attribs->show_author != '0')) : ?>
+		<div class="box_info">
+			<?php if ($params->get('show_create_date') == '1') : ?>
+				<span>Erstellt: <?= date('d.m.Y', strtotime($this->item->created)) ?></span>
+			<?php endif; ?>
+			<?php if ($params->get('show_modified_date') == '1') : ?>
+				<span>Aktualisiert: <?= date('d.m.Y', strtotime($this->item->modified)) ?></span>
+			<?php endif; ?>
 
-	<?php if ($params->get('show_publish_date') == '1') : ?>
-		<span>Veröffentlicht: <?= date('d.m.Y',strtotime($this->item->publish_up)) ?></span>
-	<?php endif;?>
-	<?php if ($params->get('show_author') == '1') : ?>
-		<span>Autor: <?= $this->item->author ?></span>
-	<?php endif;?>
-</div>
-	<?php endif;?>
+			<?php if ($params->get('show_publish_date') == '1') : ?>
+				<span>Veröffentlicht: <?= date('d.m.Y', strtotime($this->item->publish_up)) ?></span>
+			<?php endif; ?>
+			<?php if ($params->get('show_author') == '1') : ?>
+				<span>Autor: <?= $this->item->author ?></span>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
 </div>
